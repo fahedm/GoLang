@@ -68,6 +68,28 @@ Docker, Kubernetes, openshift, DropBox, Netflix, Golang etc.
 - Go is sensitive to white spaces, i.e. line feeds, tabs, etc.
 - builtin package in always available.
 
+### Variables
+
+- Each variables must assigned type, and once assigned it can't be changed.
+- 1. var keyword is used to create a variable. (var variableName type = value).
+- 2. := signe is also used, in this we don't have to define type, compiler decides the type of the variable, based on the value. (variablename := value)
+- It is not possible to declare a variable using :=, without assigning a value to it.
+- var can be used inside and outside of functions. With var, Declaration and assignment can be done separately.
+- := can only be used inside functions. with :=, declaration and assignment must be done in the same line.
+
+### Multiple Variables and rules
+
+- with GO, you can define multiple variables in one line.
+- if you use any type, it is only possible to declare that type of variables.
+- If type is not defined, then we can have different tyeps of variable, we just have to use :=.
+- Naming rules, are same as any other programming language.
+- Only starts with char or underscore, can't be a keyword, case-sensitive.
+- We can use camelCase, PascalCase, snake_case etc.
+- Constant variable can be created using "const" keyword. it will be unchangeable and read-only.
+- Constant names are usually written in uppercase letters for easy identification and differentiation from variables. These can be declared both inside and outside of a function.
+- you can declare constant with type or without type.
+- Multiple constants can be grouped together into a block for readability.
+
 ### In Basic Hello World Program
 
 - package: each program should be a part of a package. we need to define to which package current program belongs to.
@@ -78,3 +100,26 @@ Docker, Kubernetes, openshift, DropBox, Netflix, Golang etc.
 - If required we can write multiple statements in one line, seperated by ';'
 - Single line comments can be given after //
 - MultiLine comments can be given inside /*...*/
+
+### Running the Program
+
+- In package where you program reside, run "go run \<filename\>". you can run "go run ." if there is only one file. there can be only one main package. which will be executed by this command.
+- If you want to create a build. run "go build ." it is create a build for that package.
+
+### GO output using format package (fmt)
+
+- Print() function is used to print only given variable.
+- Printf() can be used to format the print statement using "%v" for value and %T for type or variable.
+- Println() can print arguments,  whitespace is added between the arguments, and a newline is added at the end.
+
+### Data Types
+
+- int- stores integers (whole numbers), such as 123 or -123
+
+  1. Signed integers (int) - can store both positive and negative values
+  2. Unsigned integers (uint)- can only store non-negative values
+  3. default is int type.
+
+- float32- stores floating point numbers, with decimals, such as 19.99 or -19.99
+- string - stores text, such as "Hello World". String values are surrounded by double quotes
+- bool- stores values with two states: true or false. Default value is False
