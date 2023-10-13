@@ -123,3 +123,8 @@ Docker, Kubernetes, openshift, DropBox, Netflix, Golang etc.
 - float32- stores floating point numbers, with decimals, such as 19.99 or -19.99
 - string - stores text, such as "Hello World". String values are surrounded by double quotes
 - bool- stores values with two states: true or false. Default value is False
+
+### contants
+
+- The const keyword declares the variable as "constant", which means that it is unchangeable and read-only.
+  
