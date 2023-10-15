@@ -1,7 +1,10 @@
 package main // Package declaration
 
-import ("fmt")
+import (
+	"fmt"
+)
 
 func main() {
-  fmt.Println("Hello World Program Execution")
+	fmt.Println("Hello World Program Execution")
+	fmt.Print("we are studying git")
 }
