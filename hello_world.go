@@ -6,5 +6,4 @@ import (
 
 func main() {
 	fmt.Println("Hello World Program Execution")
-	fmt.Print("we are studying git")
 }
