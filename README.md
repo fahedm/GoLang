@@ -127,4 +127,5 @@ Docker, Kubernetes, openshift, DropBox, Netflix, Golang etc.
 ### contants
 
 - The const keyword declares the variable as "constant", which means that it is unchangeable and read-only.
-  
+
+# GoLang Tutorial is completed till https://go.dev/doc/tutorial/handle-errors
