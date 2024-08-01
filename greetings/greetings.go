@@ -2,6 +2,7 @@ package greetings
 
 import (
 	"fmt"
+	"errors"
 )
 
 //Hello returns a greeting for the named person
@@ -22,3 +23,14 @@ func Hello(name string) string {
 }
 
 // go mod init command creates a go.mod file to track your code's dependencies
+
+func Hello_with_Exception(name string) (string, error){
+	// If no name is given, return a error with message
+	if name == "" {
+		return "", errors.New("empty name")
+	}
+	// If name is given, return a value that embeds the name in greeting message
+	message := fmt.Sprintf("Hi, %v, Let's Learn Go", name)
+	return message, nil
+	// nil (meaning no error) as a second value in the successful return
+}
