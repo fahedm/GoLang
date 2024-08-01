@@ -67,3 +67,29 @@ func randomFormat() string{
     return formats[rand.Intn(len(formats))]
 
 }
+
+// Hellos returns a map that associates each of the named people
+// with a greeting message.
+func Multiple_Hello(names []string) (map[string]string, error) {
+	// parameter is a slice of names rather than a single name.
+
+    // A map to associate names with messages.
+    messages := make(map[string]string)
+	// Initialize a map with the following syntax: make(map[key-type]value-type).
+
+    // Loop through the received slice of names, calling
+    // the Hello function to get a message for each name.
+
+	// You don't need the index, so you use the Go blank identifier (an underscore) to ignore it.
+    for _, name := range names {
+		// In this for loop, range returns two values: the index of the current item in the loop and a copy of the item's value.
+        message, err := Hello_with_Exception(name)
+        if err != nil {
+            return nil, err
+        }
+        // In the map, associate the retrieved message with
+        // the name.
+        messages[name] = message
+    }
+    return messages, nil
+}

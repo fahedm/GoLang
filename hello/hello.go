@@ -25,13 +25,25 @@ func main() {
 
 	// request a greeting message.
 	// message, err := greetings.Hello_with_Exception("")
-	message, err := greetings.Hello_with_random("Fahed")
+	// message, err := greetings.Hello_with_random("Fahed")
 	// if error is return print it to console and exit the program
+
+	// A slice of names.
+    names := []string{"Fahed", "Dilshad", "Shlok"} 
+	// Create a names variable as a slice type holding three names.
+
+    // Request greeting messages for the names.
+    messages, err := greetings.Multiple_Hello(names)
+	// Pass the names variable as the argument to the Hellos function.
 
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(message)
+	// If no error was returned, print the returned map of
+    // messages to the console.
+    fmt.Println(messages)
+
+	// fmt.Println(message)
 }
 
 // to initialize a package : go mod init <package name>
