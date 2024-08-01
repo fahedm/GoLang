@@ -24,7 +24,8 @@ func main() {
 	log.SetFlags(0)
 
 	// request a greeting message.
-	message, err := greetings.Hello_with_Exception("")
+	// message, err := greetings.Hello_with_Exception("")
+	message, err := greetings.Hello_with_random("Fahed")
 	// if error is return print it to console and exit the program
 
 	if err != nil {
