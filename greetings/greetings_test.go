@@ -20,7 +20,7 @@ func TestHelloName(t *testing.T) {
 	*/
     name := "Gladys"
     want := regexp.MustCompile(`\b`+name+`\b`)
-    msg, err := Hello_with_Exception("Gladys")
+    msg, err := Hello_with_random("Gladys")
     if !want.MatchString(msg) || err != nil {
         t.Fatalf(`Hello("Gladys") = %q, %v, want match for %#q, nil`, msg, err, want)
     }
@@ -35,7 +35,7 @@ func TestHelloEmpty(t *testing.T) {
 	If the call returns a non-empty string or no error, 
 	you use the t parameter's Fatalf method to print a message to the console and end execution.
 	*/
-    msg, err := Hello_with_Exception("")
+    msg, err := Hello_with_random("")
     if msg != "" || err == nil {
         t.Fatalf(`Hello("") = %q, %v, want "", error`, msg, err)
     }
