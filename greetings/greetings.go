@@ -41,8 +41,8 @@ func Hello_with_random(name string) (string, error) {
 		return "", errors.New("empty name")
 	}
 	// create message using random format
-	// message := fmt.Sprintf(randomFormat(), name)
-	message := fmt.Sprint(randomFormat()) // to check the failing tests
+	message := fmt.Sprintf(randomFormat(), name)
+	// message := fmt.Sprint(randomFormat()) // to check the failing tests
 	return message, nil
 }
 
