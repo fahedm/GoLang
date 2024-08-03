@@ -45,17 +45,30 @@ func main() {
 	}
 	fmt.Println("connected")
 
-	albums, err := albumsByArtist("John Coltrane") // Call the albumsByArtist function
+	// Call the albumsByArtist function
+	albums, err := albumsByArtist("John Coltrane") 
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Printf("Albums found: %v\n", albums)
 
+	// Call the albumsByID function
 	album, err := albumsByID(4)
 	if err != nil{
 		log.Fatal(err)
 	}
 	fmt.Printf("Album found: %v\n", album)
+
+	// Call the addAlbum function
+	albID, err := addAlbum(Album{
+		Title:  "The Modern Sound of Betty Carter",
+		Artist: "Betty Carter",
+		Price:  49.99,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("ID of added album: %v\n", albID)
 }
 
 // "go get ." to add the github.com/go-sql-driver/mysql module as a dependency for your own module. 
@@ -121,4 +134,19 @@ func albumsByID(id int64) (Album, error) {
 		return alb, fmt.Errorf("albumsByID %d: %v", id, err)
 	}
 	return alb, nil
+}
+
+// addAlbum adds album to the database,
+// returns ID of the new entry
+func addAlbum(alb Album) (int64, error) {
+    result, err := db.Exec("INSERT INTO album (title, artist, price) VALUES (?, ?, ?)", alb.Title, alb.Artist, alb.Price)
+    // Like Query, Exec takes an SQL statement followed by parameter values for the SQL statement.
+	if err != nil {
+        return 0, fmt.Errorf("addAlbum: %v", err)
+    }
+    id, err := result.LastInsertId() // Retrieve the ID of the inserted database row using Result.LastInsertId.
+    if err != nil {
+        return 0, fmt.Errorf("addAlbum: %v", err)
+    }
+    return id, nil
 }
