@@ -27,7 +27,8 @@ func main() {
     router := gin.Default() // Initialize a Gin router using Default.
     router.GET("/albums", getAlbums) // to associate the GET HTTP method and /albums path with a handler function.
 	// passing the name of the getAlbums function. This is different from passing the result of the function
-    
+    router.GET("/albums/:id", getAlbumByID)
+	// In Gin, the colon preceding an item in the path signifies that the item is a path parameter.
 	router.POST("/albums", postAlbums)
 	// With Gin, you can associate a handler with an HTTP method-and-path combination. 
 	// In this way, you can separately route requests sent to a single path based on the method the client is using.
@@ -62,4 +63,19 @@ func postAlbums(c *gin.Context) {
     albums = append(albums, newAlbum) // Append the album struct initialized from the JSON to the albums slice.
     c.IndentedJSON(http.StatusCreated, newAlbum)
 	// Add a 201 status code to the response, along with JSON representing the album you added.
+}
+
+// getAlbumByID locates the album whose ID value matches the id
+// parameter sent by the client, then returns that album as a response.
+func getAlbumByID(c *gin.Context) {
+    id := c.Param("id")
+
+    // Loop over the list of albums, looking for an album whose ID value matches the parameter.
+    for _, a := range albums {
+        if a.ID == id {
+            c.IndentedJSON(http.StatusOK, a)
+            return
+        }
+    }
+    c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 }

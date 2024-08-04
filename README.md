@@ -31,3 +31,10 @@ Learning GoLang
   - export PATH=$PATH:$GOPATH/bin
 
 - after these commands run "go install" again, now you should be able to execute you program name as command
+
+## Web Service Implementation
+
+- we will use Gin framework for this.
+- as of now, we will use in-memory database and simple curl command to test our functionality.
+- a real-world service would likely use a database query to perform this lookup.
+  
