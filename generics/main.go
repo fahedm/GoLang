@@ -1,6 +1,11 @@
 package main
 import "fmt"
 
+type Number interface { // type constraint as an interface. // helps streamline code
+    int64 | float64
+} 
+// we can use this Number type constraint instead of writing out int64 | float64.
+
 func main() {
     // Initialize a map for the integer values
     ints := map[string]int64{
@@ -17,9 +22,25 @@ func main() {
     fmt.Printf("Non-Generic Sums: %v and %v\n",
         SumInts(ints),
         SumFloats(floats))
+
 	fmt.Printf("Generic Sums: %v and %v\n",
 		SumIntsOrFloats[string, int64](ints), // specify type arguments in brackets
 		SumIntsOrFloats[string, float64](floats))
+
+	/* We can omit type arguments in calling code when the Go compiler can infer the types we want to use. 
+	The compiler infers type arguments from the types of function arguments.
+
+	if we needed to call a generic function that had no arguments, 
+	we would need to include the type arguments in the function call.
+	*/
+
+	fmt.Printf("Generic Sums, type parameters inferred: %v and %v\n",
+    SumIntsOrFloats(ints),
+    SumIntsOrFloats(floats))
+
+	fmt.Printf("Generic Sums with Constraint: %v and %v\n",
+    SumNumbers(ints),
+    SumNumbers(floats))
 }
 
 // SumInts adds together the values of m.
@@ -89,3 +110,13 @@ func SumIntsOrFloats[K comparable, V int64 | float64](m map[K]V) V {
 in each call the compiler replaced the type parameters with the concrete types specified in that call.
 
 */
+
+// SumNumbers sums the values of map m. It supports both integers
+// and floats as map values.
+func SumNumbers[K comparable, V Number](m map[K]V) V {
+    var s V
+    for _, v := range m {
+        s += v
+    }
+    return s
+}
