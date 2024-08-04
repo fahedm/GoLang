@@ -27,7 +27,12 @@ func main() {
     router := gin.Default() // Initialize a Gin router using Default.
     router.GET("/albums", getAlbums) // to associate the GET HTTP method and /albums path with a handler function.
 	// passing the name of the getAlbums function. This is different from passing the result of the function
-    router.Run("localhost:8080") // to attach the router to an http.Server and start the server.
+    
+	router.POST("/albums", postAlbums)
+	// With Gin, you can associate a handler with an HTTP method-and-path combination. 
+	// In this way, you can separately route requests sent to a single path based on the method the client is using.
+
+	router.Run("localhost:8080") // to attach the router to an http.Server and start the server.
 }
 
 // getAlbums responds with the list of all albums as JSON.
@@ -42,4 +47,19 @@ func getAlbums(c *gin.Context) {
 	and the size difference is usually small.
 
 	*/
+}
+
+// postAlbums adds an album from JSON received in the request body.
+func postAlbums(c *gin.Context) {
+    var newAlbum album
+
+    // Call BindJSON to bind the received JSON to newAlbum.
+    if err := c.BindJSON(&newAlbum); err != nil {
+        return
+    }
+
+    // Add the new album to the slice.
+    albums = append(albums, newAlbum) // Append the album struct initialized from the JSON to the albums slice.
+    c.IndentedJSON(http.StatusCreated, newAlbum)
+	// Add a 201 status code to the response, along with JSON representing the album you added.
 }
