@@ -38,3 +38,7 @@ Learning GoLang
 - as of now, we will use in-memory database and simple curl command to test our functionality.
 - a real-world service would likely use a database query to perform this lookup.
   
+## Generics
+
+- With generics, you can declare and use functions or types that are written to work with any of a set of types provided by calling code.
+- 
